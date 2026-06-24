@@ -7,6 +7,7 @@ import {
   type CSSProperties,
   type KeyboardEvent,
 } from "react";
+import Markdown from "./Markdown";
 
 type Role = "user" | "assistant";
 type Message = { role: Role; content: string; streaming?: boolean };
@@ -230,7 +231,7 @@ export default function ChatScreen({ onLogout }: { onLogout: () => void }) {
                     <span style={S.asstAvatarGlyph}>&#9612;</span>
                   </div>
                   <div style={S.asstText}>
-                    {m.content}
+                    <Markdown>{m.content}</Markdown>
                     {m.streaming && <span style={S.caret}></span>}
                   </div>
                 </div>
@@ -471,9 +472,9 @@ const S: Record<string, CSSProperties> = {
     fontSize: 15,
     lineHeight: 1.65,
     color: "#26262a",
-    whiteSpace: "pre-wrap",
     wordBreak: "break-word",
     paddingTop: 4,
+    minWidth: 0,
   },
   caret: {
     display: "inline-block",
